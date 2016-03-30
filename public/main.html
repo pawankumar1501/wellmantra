@@ -1,0 +1,41 @@
+<div class="container" ng-show="authenticated">
+  <div class="row">  <div class="col-md-6">
+        <div class="page-header"><h1>Add an Event</h1></div>
+            <form ng-submit="post()">
+                <div class="form-group">
+                    <input id="title" type="text" placeholder="Title" ng-model="newbook.title" class="form-control" />
+                    </div> 
+                <div class="form-group">
+                    <input id="author" type="text" placeholder="Artist" ng-model="newbook.author" class="form-control"/>
+                </div>
+                <div class="form-group">    
+                    <input id="releaseDate" type="text" placeholder="Event Date" ng-model="newbook.releaseDate" class="form-control"/>
+                </div>
+                <div class="form-group">
+                    <input id="keywords" type="text" placeholder="keywords" ng-model="newbook.keywords" class="form-control"/>
+                </div>
+                <div class="form-group">
+                    <button id="add" class="btn btn-primary">Add</button>
+                </div>
+            </form>
+        </div>
+    </div></div>
+
+<div class="row">
+    <div ng-repeat="book in books">
+        <div class="col-md-4" style="background-color: #fff; border: solid 1px;">
+            <div class="col-md-6">
+                <img  class="thumbnail" src="images/placeholder.png"/>
+            </div>
+            <div class="col-md-6">		
+        	    <ul class="list-unstyled list-group">
+        	        <li>{{book.title}} </li>
+        	        <li>{{book.author}}</li>
+        	        <li>{{book.releaseDate}}</li>
+        	        <li>{{book.keywords}}</li>
+        	    </ul>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
