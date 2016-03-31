@@ -16,7 +16,7 @@ var authenticate = require('./routes/authenticate')(passport);
 
 var mongoose = require('mongoose');
 // connect to mongo db
-mongoose.connect("mongodb://localhost/book-lib");
+mongoose.connect("mongodb://MongoLab-u:LU88nFbArVy3t.mNzjWKUFKSswAd6CnPGIbjnEM93Fo-@ds064278.mlab.com:64278/MongoLab-u");
 var app = express();
 
 // view engine setup
