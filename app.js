@@ -7,6 +7,9 @@ var passport = require('passport');
 var session = require('express-session'); 
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+
+
+
 require('./models/models');
 
 var index = require('./routes/index');
@@ -16,7 +19,8 @@ var authenticate = require('./routes/authenticate')(passport);
 
 var mongoose = require('mongoose');
 // connect to mongo db
-mongoose.connect("mongodb://MongoLab-u:LU88nFbArVy3t.mNzjWKUFKSswAd6CnPGIbjnEM93Fo-@ds064278.mlab.com:64278/MongoLab-u");
+// mongoose.connect("mongodb://localhost/book-lib");
+-mongoose.connect("mongodb://MongoLab-u:LU88nFbArVy3t.mNzjWKUFKSswAd6CnPGIbjnEM93Fo-@ds064278.mlab.com:64278/MongoLab-u");
 var app = express();
 
 // view engine setup
@@ -31,6 +35,7 @@ app.use(session({
 }));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
+
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(passport.initialize());
