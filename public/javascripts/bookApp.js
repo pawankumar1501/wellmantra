@@ -12,17 +12,21 @@ var app = angular.module('bookApp',['ngRoute','ngResource']).run(function($rootS
 app.config(function($routeProvider){
 $routeProvider
 	.when('/',{
-		templateUrl:'main.html',
+		templateUrl:'main/main.html',
 		controller:'mainController'
 	})
 	.when('/login', {
-			templateUrl: 'login.html',
+			templateUrl: 'main/login.html',
 			controller: 'authController'
 		})
 		//the signup display
 	.when('/signup', {
-			templateUrl: 'register.html',
+			templateUrl: 'main/register.html',
 			controller: 'authController'
+		})
+	.when('/add-event', {
+			templateUrl: 'admin/add-event.html',
+			controller: 'adminController'
 		});
 });
 
@@ -31,17 +35,21 @@ app.factory('postService', function($resource){
 });
 
 
-app.controller('mainController', function(postService, $scope){
+app.controller('mainController', function(postService, $scope,$http){
 	// decalre an empty list of book collection 
 	$scope.books = postService.query();
 	$scope.newbook = {coverImage:'', title:'',author:'',releaseDate:'',keywords:'' };
 
-	$scope.post = function () {
-		$scope.newbook.coverImage='images/placeholder.png'
-		postService.save($scope.newbook, function(){
-	    $scope.books = postService.query();
-	    $scope.newbook = {coverImage:'', title:'',author:'',releaseDate:'',keywords:'' };
-	  });
+	$scope.delete = function (book) {
+		console.log(book._id);
+		$http.post('/admin/delete-item',book).success(function (data) {
+			alert(' ');
+			console.log(data);
+		})
+	}
+
+	$scope.edit = function () {
+		console.log('item edited');
 	}
 });
 
@@ -75,4 +83,18 @@ app.controller('authController', function($scope, $http, $rootScope, $location){
       }
     });
   };
+});
+
+app.controller('adminController', function(postService, $scope){
+	// decalre an empty list of book collection 
+	$scope.books = postService.query();
+	$scope.newbook = {coverImage:'', title:'',author:'',releaseDate:'',keywords:'' };
+
+	$scope.post = function () {
+		$scope.newbook.coverImage='images/placeholder.png'
+		postService.save($scope.newbook, function(){
+	    $scope.books = postService.query();
+	    $scope.newbook = {coverImage:'', title:'',author:'',releaseDate:'',keywords:'' };
+	  });
+	}
 });
