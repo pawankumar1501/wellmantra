@@ -1,0 +1,22 @@
+<div class="row">
+    <div ng-repeat="book in books">
+        <div class="col-md-4" style="background-color: #fff; border: solid 1px;">
+            <div class="col-md-6">
+                <img ng-if="book.coverImage" class="thumbnail" ng-src="{{book.coverImage}}"/>
+            </div>
+            <div class="col-md-6">		
+        	    <ul class="list-unstyled list-group">
+        	        <li ><a href="#/book/{{book.title}}" ng-bind="book.title"></a></li>
+        	        <li ng-bind="book.author"></li>
+        	        <li ng-bind="book.releaseDate"></li>
+        	        <li ng-bind="book.keywords"></li>
+        	    </ul>
+                <p class="pull-right">
+                    <span id="delete-item" class="glyphicon glyphicon-trash" ng-click="delete(book)"></span>
+                    <span id="eidt-item" class="glyphicon glyphicon-edit" ng-click="edit()"></span>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
